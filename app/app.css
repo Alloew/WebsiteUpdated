@@ -1,15 +1,487 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+:root {
+  --bg: rgb(21, 21, 22);
+  --other: rgb(30, 31, 34);
+  --text: rgb(255, 255, 255);
+  --blue: rgb(0, 89, 255);
+  --item: rgb(26, 26, 26);
+  --shadow: black;
+  --item-width: 150px;
+  --item-width-large: 300px;
 }
 
-html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Roboto, sans-serif;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+#Main {
+  padding-top: 35px;
+}
+
+.Nav {
+  position: fixed;
+  background: var(--bg);
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  opacity: 90%;
+}
+
+.Home {
+  text-align: center;
+}
+
+.link {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.link::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  margin-bottom: -2px;
+  background: var(--blue);
+  transition: all;
+  transition-duration: 250ms;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.light {
+  --bg: rgb(255, 255, 255);
+  --other: rgb(223, 223, 223);
+  --text: rgb(0, 0, 0);
+  --shadow: rgb(194, 194, 194);
+  --item: rgb(245, 245, 245);
+}
+
+.toggleMode {
+  margin-left: auto;
+  width: 20px;
+  height: 10px;
+  background: var(--text);
+  border-radius: 20px;
+  border: solid 2px var(--text);
+  cursor: pointer;
+}
+
+.slider {
+  background: var(--other);
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  left: 0;
+  transition: left;
+  transition-duration: 250ms;
+}
+
+.input:checked + .slider {
+  left: 10px;
+}
+
+.toggleMode input {
+  display: none;
+}
+
+.item {
+  width: min-content;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  gap: 8px;
+  background: var(--item);
+  transition: transform;
+  transition-duration: 250ms;
+  cursor: pointer;
+}
+
+.item:hover {
+  transform: scale(1.02);
+}
+
+.item img {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  width: var(--item-width);
+}
+
+@media only screen and (min-width: 800px) {
+  .item img {
+    width: var(--item-width-large);
   }
+}
+
+.shadow {
+  box-shadow: 0px 0px 10px var(--shadow);
+}
+
+.Gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 24px;
+  justify-content: center;
+}
+
+.previewItem {
+  margin: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--item);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 24px;
+  max-width: 80vw;
+  max-height: 80vh;
+  text-align: center;
+  gap: 8px;
+}
+
+@media screen and (min-height: 550px) {
+  .previewItem {
+    top: 0;
+  }
+}
+
+.previewItem img {
+  max-height: 60vh;
+  max-width: 95%;
+  border-radius: 8px;
+}
+
+.button {
+  border: none;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), var(--blue);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    var(--blue);
+}
+
+.button:active {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    var(--blue);
+}
+
+.input {
+  border: none;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), var(--other);
+  color: var(--text);
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.input:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),
+    var(--other);
+}
+
+.input:active {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    var(--other);
+}
+
+input:focus {
+  outline: none;
+}
+
+.x {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  color: var(--text);
+  border: none;
+  padding: 12px;
+  line-height: 18px;
+  font-size: 24px;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.x:active {
+  color: gray;
+  transform: scale(0.9);
+}
+
+.logo {
+  max-width: 70%;
+  max-height: 50vh;
+}
+
+.a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+.a:hover {
+  text-decoration: underline;
+}
+
+.News,
+.Games {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.Productions {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.largeText {
+  font-size: 24px;
+}
+
+.gameFrame {
+  color: var(--text);
+  width: 95vw;
+  margin: auto;
+  border: none;
+  padding: 4px;
+  min-height: 720px;
+  max-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.versionPick button {
+  margin: 4px;
+}
+
+.versionPick summary {
+  cursor: pointer;
+}
+
+.galleryMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+}
+
+.galleryMain h1 {
+  font-size: 72px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  line-height: 0px;
+}
+
+.galleryItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.galleryFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: 80vh;
+}
+.galleryItem img {
+  border: 2px solid var(--text);
+  height: 70vh;
+}
+.galleryFrame a {
+  margin-top: 8px;
+  background-color: #e6e6e6;
+  color: black;
+  text-decoration: none;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.galleryFrame button:hover {
+  background-color: #d1d1d1;
+}
+.galleryFrame button:active {
+  background-color: #c0c0c0;
+}
+
+.Turboman {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.youtubeFrame {
+  width: calc(100% - 20px);
+  border: none;
+  padding: 0;
+  height: calc(100vh - 120px);
+  margin: auto;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.Other {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.mr {
+  margin-right: 8px;
+}
+
+p {
+  line-height: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+.background {
+  pointer-events: visible;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--other);
+  border-radius: 20px;
+  border: solid 3.5px var(--bg);
+}
+
+.Footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: var(--item);
+}
+
+a {
+  color: var(--blue);
+}
+
+#Main {
+  min-height: calc(100vh - 110px);
+}
+
+.versionColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.versionRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.worldRecordsDiv {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: auto;
+  padding: 12px;
+  background: yellow;
+  color: black;
+  border-radius: 4px;
+}
+
+.worldRecordTitle {
+  margin-top: 12px;
+  font-family: sans-serif;
+}
+
+.worldRecord {
+  font-size: 22px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.halloween {
+  color: rgb(255, 132, 0);
+}
+
+.halloweenMain {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.outline {
+  outline: solid 1px white;
+  background: var(--other);
+  border-radius: 4px;
+  max-width: 90vw;
+  padding: 12px;
+  box-shadow: 0px 0px 24px rgba(255, 255, 255, 0.148);
 }
