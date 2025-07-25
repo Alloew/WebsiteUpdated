@@ -311,7 +311,7 @@ input:focus {
 .galleryMain h1 {
   font-size: 72px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  line-height: 0px;
+  /* line-height: 0px; */
 }
 
 .galleryItem {
